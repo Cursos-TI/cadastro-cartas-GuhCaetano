@@ -14,7 +14,10 @@ int main() {
   float pib1, pib2;
   float densidadePopulacional1, densidadePopulacional2;
   float pibPerCapita1, pibPerCapita2;
+  float superPoder1, superPoder2;
   int pontosTuristicos1, pontosTuristicos2;
+  int resultadoPopulacao, resultadoArea, resultadoPib, resultadoPontosTuristicos;
+  int resultadoDensidadePopulacional, resultadoPibPerCapita, resultadoSuperPoder;
 
   // Área para entrada de dados
   printf("Cadastro da Carta 1\n");
@@ -68,6 +71,17 @@ int main() {
   densidadePopulacional2 = populacao2 / area2;
   pibPerCapita1 = (pib1 * 1000000000.0f) / populacao1;
   pibPerCapita2 = (pib2 * 1000000000.0f) / populacao2;
+  superPoder1 = (float)populacao1 + area1 + pib1 + pontosTuristicos1 + pibPerCapita1 + (1.0f / densidadePopulacional1);
+  superPoder2 = (float)populacao2 + area2 + pib2 + pontosTuristicos2 + pibPerCapita2 + (1.0f / densidadePopulacional2);
+
+  // Compara as cartas atributo por atributo
+  resultadoPopulacao = populacao1 > populacao2;
+  resultadoArea = area1 > area2;
+  resultadoPib = pib1 > pib2;
+  resultadoPontosTuristicos = pontosTuristicos1 > pontosTuristicos2;
+  resultadoDensidadePopulacional = densidadePopulacional1 < densidadePopulacional2;
+  resultadoPibPerCapita = pibPerCapita1 > pibPerCapita2;
+  resultadoSuperPoder = superPoder1 > superPoder2;
 
   // Área para exibição dos dados da cidade
   printf("\nCarta 1:\n");
@@ -80,6 +94,7 @@ int main() {
   printf("Numero de Pontos Turisticos: %d\n", pontosTuristicos1);
   printf("Densidade Populacional: %.2f hab/km2\n", densidadePopulacional1);
   printf("PIB per Capita: %.2f reais\n", pibPerCapita1);
+  printf("Super Poder: %.2f\n", superPoder1);
 
   printf("\nCarta 2:\n");
   printf("Estado: %c\n", estado2);
@@ -91,6 +106,16 @@ int main() {
   printf("Numero de Pontos Turisticos: %d\n", pontosTuristicos2);
   printf("Densidade Populacional: %.2f hab/km2\n", densidadePopulacional2);
   printf("PIB per Capita: %.2f reais\n", pibPerCapita2);
+  printf("Super Poder: %.2f\n", superPoder2);
+
+  printf("\nComparacao de Cartas:\n");
+  printf("Populacao: Carta %d venceu (%d)\n", resultadoPopulacao ? 1 : 2, resultadoPopulacao);
+  printf("Area: Carta %d venceu (%d)\n", resultadoArea ? 1 : 2, resultadoArea);
+  printf("PIB: Carta %d venceu (%d)\n", resultadoPib ? 1 : 2, resultadoPib);
+  printf("Pontos Turisticos: Carta %d venceu (%d)\n", resultadoPontosTuristicos ? 1 : 2, resultadoPontosTuristicos);
+  printf("Densidade Populacional: Carta %d venceu (%d)\n", resultadoDensidadePopulacional ? 1 : 2, resultadoDensidadePopulacional);
+  printf("PIB per Capita: Carta %d venceu (%d)\n", resultadoPibPerCapita ? 1 : 2, resultadoPibPerCapita);
+  printf("Super Poder: Carta %d venceu (%d)\n", resultadoSuperPoder ? 1 : 2, resultadoSuperPoder);
 
   return 0;
 }
